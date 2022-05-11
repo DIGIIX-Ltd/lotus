@@ -2104,13 +2104,21 @@ var sectorsCompactPartitionsCmd = &cli.Command{
 			Usage:    "list of partitions to compact sectors in",
 			Required: true,
 		},
+		&cli.BoolFlag{
+			Name:  "really-do-it",
+			Usage: "Actually send transaction performing the action",
+			Value: false,
+		},
+		&cli.StringFlag{
+			Name:  "actor",
+			Usage: "TODO",
+		},
 	},
 	Action: func(cctx *cli.Context) error {
-		nodeAPI, closer, err := lcli.GetStorageMinerAPI(cctx)
-		if err != nil {
-			return err
+		if !cctx.Bool("really-do-it") {
+			fmt.Println("Pass --really-do-it to actually execute this action")
+			return nil
 		}
-		defer closer()
 
 		api, acloser, err := lcli.GetFullNodeAPI(cctx)
 		if err != nil {
@@ -2120,7 +2128,7 @@ var sectorsCompactPartitionsCmd = &cli.Command{
 
 		ctx := lcli.ReqContext(cctx)
 
-		maddr, err := nodeAPI.ActorAddress(ctx)
+		maddr, err := getActorAddress(ctx, cctx)
 		if err != nil {
 			return err
 		}
@@ -2131,16 +2139,14 @@ var sectorsCompactPartitionsCmd = &cli.Command{
 		}
 
 		deadline := cctx.Uint64("deadline")
-		if err != nil {
-			return err
-		}
 
-		parts := cctx.Int64Slice("pre-sealed-sectors")
+		parts := cctx.Int64Slice("partitions")
 		if len(parts) <= 0 {
 			return fmt.Errorf("must include at least one partition to compact")
 		}
+		fmt.Printf("compacting %d paritions\n", len(parts))
 
-		partitions := bitfield.BitField{}
+		partitions := bitfield.New()
 		for _, partition := range parts {
 			partitions.Set(uint64(partition))
 		}
