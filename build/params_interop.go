@@ -54,16 +54,19 @@ var UpgradeHyggeHeight = abi.ChainEpoch(-21)
 var UpgradeLightningHeight = abi.ChainEpoch(-22)
 var UpgradeThunderHeight = abi.ChainEpoch(-23)
 var UpgradeWatermelonHeight = abi.ChainEpoch(-24)
+var UpgradeDragonHeight = abi.ChainEpoch(-25)
+var UpgradePhoenixHeight = abi.ChainEpoch(-26)
 
-const UpgradeDragonHeight = 50
-
-const UpgradePhoenixHeight = UpgradeDragonHeight + 100
+const UpgradeWaffleHeight = 50
 
 // This fix upgrade only ran on calibrationnet
 const UpgradeWatermelonFixHeight = -1
 
 // This fix upgrade only ran on calibrationnet
 const UpgradeWatermelonFix2Height = -2
+
+// This fix upgrade only ran on calibrationnet
+const UpgradeCalibrationDragonFixHeight = -3
 
 var DrandSchedule = map[abi.ChainEpoch]DrandEnum{
 	0:                    DrandMainnet,
@@ -142,3 +145,6 @@ const BootstrapPeerThreshold = 2
 const Eip155ChainId = 3141592
 
 var WhitelistedBlock = cid.Undef
+
+const F3Enabled = true
+const F3BootstrapEpoch abi.ChainEpoch = 1000

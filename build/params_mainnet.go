@@ -99,18 +99,24 @@ const UpgradeThunderHeight = UpgradeLightningHeight + 2880*21
 // 2023-12-12T13:30:00Z
 const UpgradeWatermelonHeight = 3469380
 
-// 2024-04-02T14:00:00Z - Epoch will be updated in final release
-var UpgradeDragonHeight = abi.ChainEpoch(999999999999999)
+// 2024-04-24T14:00:00Z
+const UpgradeDragonHeight = 3855360
 
 // This epoch, 120 epochs after the "rest" of the nv22 upgrade, is when we switch to Drand quicknet
-// 2024-04-02T15:00:00Z
-var UpgradePhoenixHeight = UpgradeDragonHeight + 120
+// 2024-04-11T15:00:00Z
+const UpgradePhoenixHeight = UpgradeDragonHeight + 120
+
+// ??????
+var UpgradeWaffleHeight = abi.ChainEpoch(9999999999)
 
 // This fix upgrade only ran on calibrationnet
 const UpgradeWatermelonFixHeight = -1
 
 // This fix upgrade only ran on calibrationnet
 const UpgradeWatermelonFix2Height = -2
+
+// This fix upgrade only ran on calibrationnet
+const UpgradeCalibrationDragonFixHeight = -3
 
 var SupportedProofTypes = []abi.RegisteredSealProof{
 	abi.RegisteredSealProof_StackedDrg32GiBV1,
@@ -127,9 +133,8 @@ func init() {
 		SetAddressNetwork(address.Mainnet)
 	}
 
-	if os.Getenv("LOTUS_DISABLE_DRAGON") == "1" {
-		UpgradeDragonHeight = math.MaxInt64 - 1
-		UpgradePhoenixHeight = math.MaxInt64
+	if os.Getenv("LOTUS_DISABLE_WAFFLE") == "1" {
+		UpgradeWaffleHeight = math.MaxInt64 - 1
 	}
 
 	// NOTE: DO NOT change this unless you REALLY know what you're doing. This is not consensus critical, however,
@@ -161,5 +166,8 @@ const BootstrapPeerThreshold = 4
 // As per https://github.com/ethereum-lists/chains
 const Eip155ChainId = 314
 
-// we skip checks on message validity in this block to sidestep the zero-bls signature
+// WhitelistedBlock skips checks on message validity in this block to sidestep the zero-bls signature
 var WhitelistedBlock = MustParseCid("bafy2bzaceapyg2uyzk7vueh3xccxkuwbz3nxewjyguoxvhx77malc2lzn2ybi")
+
+const F3Enabled = false
+const F3BootstrapEpoch abi.ChainEpoch = -1

@@ -87,33 +87,35 @@ var (
 	UpgradeBreezeHeight      abi.ChainEpoch = -1
 	BreezeGasTampingDuration abi.ChainEpoch = 0
 
-	UpgradeSmokeHeight          abi.ChainEpoch = -1
-	UpgradeIgnitionHeight       abi.ChainEpoch = -2
-	UpgradeRefuelHeight         abi.ChainEpoch = -3
-	UpgradeTapeHeight           abi.ChainEpoch = -4
-	UpgradeAssemblyHeight       abi.ChainEpoch = 10
-	UpgradeLiftoffHeight        abi.ChainEpoch = -5
-	UpgradeKumquatHeight        abi.ChainEpoch = -6
-	UpgradeCalicoHeight         abi.ChainEpoch = -8
-	UpgradePersianHeight        abi.ChainEpoch = -9
-	UpgradeOrangeHeight         abi.ChainEpoch = -10
-	UpgradeClausHeight          abi.ChainEpoch = -11
-	UpgradeTrustHeight          abi.ChainEpoch = -12
-	UpgradeNorwegianHeight      abi.ChainEpoch = -13
-	UpgradeTurboHeight          abi.ChainEpoch = -14
-	UpgradeHyperdriveHeight     abi.ChainEpoch = -15
-	UpgradeChocolateHeight      abi.ChainEpoch = -16
-	UpgradeOhSnapHeight         abi.ChainEpoch = -17
-	UpgradeSkyrHeight           abi.ChainEpoch = -18
-	UpgradeSharkHeight          abi.ChainEpoch = -19
-	UpgradeHyggeHeight          abi.ChainEpoch = -20
-	UpgradeLightningHeight      abi.ChainEpoch = -21
-	UpgradeThunderHeight        abi.ChainEpoch = -22
-	UpgradeWatermelonHeight     abi.ChainEpoch = -23
-	UpgradeWatermelonFixHeight  abi.ChainEpoch = -24
-	UpgradeWatermelonFix2Height abi.ChainEpoch = -25
-	UpgradeDragonHeight         abi.ChainEpoch = -26
-	UpgradePhoenixHeight        abi.ChainEpoch = -27
+	UpgradeSmokeHeight                abi.ChainEpoch = -1
+	UpgradeIgnitionHeight             abi.ChainEpoch = -2
+	UpgradeRefuelHeight               abi.ChainEpoch = -3
+	UpgradeTapeHeight                 abi.ChainEpoch = -4
+	UpgradeAssemblyHeight             abi.ChainEpoch = 10
+	UpgradeLiftoffHeight              abi.ChainEpoch = -5
+	UpgradeKumquatHeight              abi.ChainEpoch = -6
+	UpgradeCalicoHeight               abi.ChainEpoch = -8
+	UpgradePersianHeight              abi.ChainEpoch = -9
+	UpgradeOrangeHeight               abi.ChainEpoch = -10
+	UpgradeClausHeight                abi.ChainEpoch = -11
+	UpgradeTrustHeight                abi.ChainEpoch = -12
+	UpgradeNorwegianHeight            abi.ChainEpoch = -13
+	UpgradeTurboHeight                abi.ChainEpoch = -14
+	UpgradeHyperdriveHeight           abi.ChainEpoch = -15
+	UpgradeChocolateHeight            abi.ChainEpoch = -16
+	UpgradeOhSnapHeight               abi.ChainEpoch = -17
+	UpgradeSkyrHeight                 abi.ChainEpoch = -18
+	UpgradeSharkHeight                abi.ChainEpoch = -19
+	UpgradeHyggeHeight                abi.ChainEpoch = -20
+	UpgradeLightningHeight            abi.ChainEpoch = -21
+	UpgradeThunderHeight              abi.ChainEpoch = -22
+	UpgradeWatermelonHeight           abi.ChainEpoch = -23
+	UpgradeWatermelonFixHeight        abi.ChainEpoch = -24
+	UpgradeWatermelonFix2Height       abi.ChainEpoch = -25
+	UpgradeDragonHeight               abi.ChainEpoch = -26
+	UpgradePhoenixHeight              abi.ChainEpoch = -27
+	UpgradeCalibrationDragonFixHeight abi.ChainEpoch = -28
+	UpgradeWaffleHeight               abi.ChainEpoch = -29
 
 	DrandSchedule = map[abi.ChainEpoch]DrandEnum{
 		0:                    DrandMainnet,
@@ -131,9 +133,11 @@ var (
 	Devnet      = true
 	ZeroAddress = MustParseAddress("f3yaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaby2smx7a")
 
-	WhitelistedBlock  = cid.Undef
-	BootstrappersFile = ""
-	GenesisFile       = ""
+	WhitelistedBlock                 = cid.Undef
+	BootstrappersFile                = ""
+	GenesisFile                      = ""
+	F3Enabled                        = false
+	F3BootstrapEpoch  abi.ChainEpoch = -1
 )
 
 const Finality = policy.ChainFinality

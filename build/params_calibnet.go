@@ -95,6 +95,12 @@ const UpgradeDragonHeight = 1427974
 // This epoch, 120 epochs after the "rest" of the nv22 upgrade, is when we switch to Drand quicknet
 const UpgradePhoenixHeight = UpgradeDragonHeight + 120
 
+// 2024-04-03T11:00:00Z
+const UpgradeCalibrationDragonFixHeight = 1493854
+
+// ?????
+const UpgradeWaffleHeight = 999999999999999
+
 var SupportedProofTypes = []abi.RegisteredSealProof{
 	abi.RegisteredSealProof_StackedDrg32GiBV1,
 	abi.RegisteredSealProof_StackedDrg64GiBV1,
@@ -129,7 +135,6 @@ func init() {
 	}
 
 	BuildType = BuildCalibnet
-
 }
 
 const BlockDelaySecs = uint64(builtin2.EpochDurationSeconds)
@@ -146,3 +151,6 @@ const BootstrapPeerThreshold = 4
 const Eip155ChainId = 314159
 
 var WhitelistedBlock = cid.Undef
+
+const F3Enabled = false
+const F3BootstrapEpoch abi.ChainEpoch = -1

@@ -56,16 +56,19 @@ const UpgradeHyggeHeight = -21
 const UpgradeLightningHeight = -22
 const UpgradeThunderHeight = -23
 const UpgradeWatermelonHeight = -24
+const UpgradeDragonHeight = -25
+const UpgradePhoenixHeight = -26
 
-const UpgradeDragonHeight = 5760
-
-const UpgradePhoenixHeight = UpgradeDragonHeight + 120
+const UpgradeWaffleHeight = 400
 
 // This fix upgrade only ran on calibrationnet
 const UpgradeWatermelonFixHeight = -100
 
 // This fix upgrade only ran on calibrationnet
 const UpgradeWatermelonFix2Height = -101
+
+// This fix upgrade only ran on calibrationnet
+const UpgradeCalibrationDragonFixHeight = -102
 
 var SupportedProofTypes = []abi.RegisteredSealProof{
 	abi.RegisteredSealProof_StackedDrg512MiBV1,
@@ -103,3 +106,6 @@ const BootstrapPeerThreshold = 2
 const Eip155ChainId = 3141592
 
 var WhitelistedBlock = cid.Undef
+
+const F3Enabled = true
+const F3BootstrapEpoch abi.ChainEpoch = 200

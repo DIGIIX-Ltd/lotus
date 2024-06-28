@@ -16,6 +16,8 @@ import (
 	"go.uber.org/fx"
 	"golang.org/x/xerrors"
 
+	"github.com/filecoin-project/go-f3/gpbft"
+
 	"github.com/filecoin-project/lotus/build"
 	"github.com/filecoin-project/lotus/metrics"
 	"github.com/filecoin-project/lotus/node/config"
@@ -378,6 +380,11 @@ func GossipSub(in GossipIn) (service *pubsub.PubSub, err error) {
 		build.MessagesTopic(in.Nn),
 		build.IndexerIngestTopic(in.Nn),
 	}
+
+	if build.F3Enabled {
+		allowTopics = append(allowTopics, gpbft.NetworkName(in.Nn).PubSubTopic())
+	}
+
 	allowTopics = append(allowTopics, drandTopics...)
 	options = append(options,
 		pubsub.WithSubscriptionFilter(
@@ -594,7 +601,7 @@ func (trw *tracerWrapper) Trace(evt *pubsub_pb.TraceEvent) {
 		msgsRPC := evt.GetRecvRPC().GetMeta().GetMessages()
 
 		// check if any of the messages we are sending belong to a trackable topic
-		var validTopic bool = false
+		var validTopic = false
 		for _, topic := range msgsRPC {
 			if trw.traceMessage(topic.GetTopic()) {
 				validTopic = true
@@ -602,7 +609,7 @@ func (trw *tracerWrapper) Trace(evt *pubsub_pb.TraceEvent) {
 			}
 		}
 		// track if the Iwant / Ihave messages are from a valid Topic
-		var validIhave bool = false
+		var validIhave = false
 		for _, msgs := range ihave {
 			if trw.traceMessage(msgs.GetTopic()) {
 				validIhave = true
@@ -630,7 +637,7 @@ func (trw *tracerWrapper) Trace(evt *pubsub_pb.TraceEvent) {
 		msgsRPC := evt.GetSendRPC().GetMeta().GetMessages()
 
 		// check if any of the messages we are sending belong to a trackable topic
-		var validTopic bool = false
+		var validTopic = false
 		for _, topic := range msgsRPC {
 			if trw.traceMessage(topic.GetTopic()) {
 				validTopic = true
@@ -638,7 +645,7 @@ func (trw *tracerWrapper) Trace(evt *pubsub_pb.TraceEvent) {
 			}
 		}
 		// track if the Iwant / Ihave messages are from a valid Topic
-		var validIhave bool = false
+		var validIhave = false
 		for _, msgs := range ihave {
 			if trw.traceMessage(msgs.GetTopic()) {
 				validIhave = true
